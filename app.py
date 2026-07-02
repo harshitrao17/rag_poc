@@ -1,3 +1,4 @@
+from supabase_db import get_supabase_client
 from pdf_loader import load_pdf
 from chunker import chunk_text
 from embedding import create_embeddings
@@ -34,3 +35,11 @@ print(f"Embedding Dimension: {len(embeddings[0])}")
 
 print("\nFirst 10 Values of First Embedding:")
 print(embeddings[0][:10])
+print("\n" + "=" * 50)
+print("Connecting to Supabase...")
+print("=" * 50)
+
+supabase = get_supabase_client()
+
+print("✅ Connected Successfully!")
+print(supabase)
