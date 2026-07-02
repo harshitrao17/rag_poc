@@ -1,0 +1,6 @@
+pypdf
+sentence-transformers
+supabase
+google-generativeai
+python-dotenv
+numpy
