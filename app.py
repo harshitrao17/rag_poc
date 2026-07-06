@@ -1,4 +1,4 @@
-from supabase_db import get_supabase_client
+from supabase_db import get_supabase_client, insert_documents
 from pdf_loader import load_pdf
 from chunker import chunk_text
 from embedding import create_embeddings
@@ -15,7 +15,7 @@ chunks = chunk_text(text)
 # Create Embeddings
 embeddings = create_embeddings(chunks)
 
-# Print Total Chunks
+ # Print Total Chunks
 print("=" * 50)
 print(f"Total Chunks: {len(chunks)}")
 print("=" * 50)
@@ -39,7 +39,14 @@ print("\n" + "=" * 50)
 print("Connecting to Supabase...")
 print("=" * 50)
 
-supabase = get_supabase_client()
-
+client = get_supabase_client()
 print("✅ Connected Successfully!")
-print(supabase)
+print(client)
+# Store Documents in Supabase
+
+success = insert_documents(client, chunks, embeddings)
+if success:
+    print("\n" + "=" * 50)
+    print("Documents Inserted Successfully!")
+    print("=" * 50)
+
