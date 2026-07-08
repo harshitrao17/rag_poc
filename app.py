@@ -2,6 +2,8 @@ from supabase_db import get_supabase_client, insert_documents
 from pdf_loader import load_pdf
 from chunker import chunk_text
 from embedding import create_embeddings
+from retriever import retrieve_documents
+from gemini import generate_answer
 
 # PDF Path
 pdf_path = "data/company.pdf"
@@ -44,9 +46,15 @@ print("✅ Connected Successfully!")
 print(client)
 # Store Documents in Supabase
 
-success = insert_documents(client, chunks, embeddings)
-if success:
-    print("\n" + "=" * 50)
-    print("Documents Inserted Successfully!")
-    print("=" * 50)
+#success = insert_documents(client, chunks, embeddings)
+#if success:
+ #   print("\n" + "=" * 50)
+  ## print("=" * 50)
 
+query = "What services does the company provide?"
+chunks = retrieve_documents(client, query)
+answer = generate_answer(query, chunks)
+print("\n" + "=" * 50)
+print("Answer")
+print("=" * 50)
+print(answer)
