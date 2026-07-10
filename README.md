@@ -36,7 +36,7 @@ The goal of this project was to understand every component of the RAG pipeline w
 ## 📂 Project Structure
 
 ```text
-RAG_POC/
+rag_poc/
 │
 ├── data/
 │   └── company.pdf
