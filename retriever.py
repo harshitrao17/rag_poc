@@ -3,7 +3,7 @@ from embedding import create_query_embedding
 
 def retrieve_documents(client, query, top_k=3):
     """
-    Retrieve the most relevant document chunks.
+    Retrieve the most relevant document chunks from Supabase.
     """
 
     query_embedding = create_query_embedding(query).tolist()
@@ -14,11 +14,9 @@ def retrieve_documents(client, query, top_k=3):
             {
                 "query_embedding": query_embedding,
                 "top_k": top_k,
-            }
+            },
         )
         .execute()
     )
 
-    chunks = response.data
-
-    return chunks
+    return response.data
