@@ -4,3 +4,5 @@ supabase
 google-generativeai
 python-dotenv
 numpy
+matplotlib
+umap-learn
