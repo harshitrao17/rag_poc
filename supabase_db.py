@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
 
-# Load .env file
 load_dotenv()
 
 
@@ -25,11 +24,18 @@ def get_supabase_client() -> Client:
     return create_client(url, key)
 
 
-def insert_documents(client, chunks, embeddings):
+def insert_documents(client, chunks, embeddings, source):
+    """
+    Insert document chunks, embeddings, and source filename
+    into the Supabase documents table.
+    """
+
     for chunk, embedding in zip(chunks, embeddings):
+
         document = {
             "chunk": chunk,
-            "embedding": embedding.tolist()
+            "embedding": embedding.tolist(),
+            "source": source
         }
 
         client.table("documents").insert(document).execute()
